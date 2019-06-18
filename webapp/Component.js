@@ -1,11 +1,12 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"ui5-firebase/ui5-firebase/model/models"
-], function (UIComponent, Device, models) {
+    "ui5-firebase/ui5-firebase/model/models",
+	"./Firebase"
+], function (UIComponent, Device, models, Firebase) {
 	"use strict";
 
-	return UIComponent.extend("ui5-firebase.ui5-firebase.Component", {
+	return UIComponent.extend("sap.firebase.SAP-Firebase-Connect.Component", {
 
 		metadata: {
 			manifest: "json"
@@ -25,6 +26,11 @@ sap.ui.define([
 
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
+			
+			// Import Firebase in the sap.ui.define
+			// set the firebase model by calling the initializeFirebase function in the Firebase.js file
+			this.setModel(Firebase.initializeFirebase(), "firebase");
+			
 		}
 	});
 });

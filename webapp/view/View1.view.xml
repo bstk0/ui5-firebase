@@ -3,7 +3,44 @@
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
-					<content></content>
+					<content>
+						<MessageStrip text="{i18n>fbSecurityRules}" type="Warning" showIcon="true" showCloseButton="true" class="sapUiMediumMarginBottom"/>
+						<Table id="shipmentTable" items="{/shipments}">
+							<headerToolbar>
+								<Toolbar>
+									<content>
+										<Title text="{i18n>Shipments}" level="H2"/>
+									</content>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column>
+									<Text text="{i18n>ShipmentId}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>Origin}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>Destination}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>Status}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{code}"/>
+										<Text text="{origin}"/>
+										<Text text="{destination}"/>
+										<ObjectStatus text="{status}"
+											state="{= ${status} === 'Shipped' ? 'Success' : ${status} === 'Missing' ? 'Warning' : ${status} === 'Preparing' ? 'Information' : 'Error'}"
+											icon="{= ${status} === 'Shipped' ? 'sap-icon://accept' : ${status} === 'Missing' ? 'sap-icon://status-critical' : ${status} === 'Preparing' ? 'sap-icon://begin' : 'sap-icon://status-negative'}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</content>
 				</Page>
 			</pages>
 		</App>
